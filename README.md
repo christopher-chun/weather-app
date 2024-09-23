@@ -6,4 +6,4 @@ Uses openweathermap API to receive data of the weather from the locations that t
 [openweathermap](https://openweathermap.org/api)
 ## Acknowledgments
 Tutorial used
-* [GreatStack]([https://www.youtube.com/@GreatStackDev](https://www.youtube.com/watch?v=MIYQR-Ybrn4))
+* [GreatStack](https://www.youtube.com/watch?v=MIYQR-Ybrn4)
