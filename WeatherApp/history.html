@@ -26,6 +26,7 @@
         cities.forEach((city) => {
           const li = document.createElement("li");
           //encodeURIComponent returns a new string representing the city encoded as a URI component
+          //creates a link to index.html with the city's weather data loaded  
           li.innerHTML = '<a href="index.html?city=' + encodeURIComponent(city) + '" style="color: white;">' + city + '</a>';
           historyList.appendChild(li);
         });
