@@ -13,6 +13,9 @@
           <img src="images/search.png" />
         </button>
       </div>
+      <a href="history.html">
+        <button id="historyButton">Open History</button>
+      </a>
       <div class="error">
         <p>Invalid city name</p>
       </div>
@@ -40,27 +43,31 @@
     </div>
   </body>
   <script>
+    //openweathermap API key and url
     const apiKey = "44b59831501c8391597259a348d1955f";
     const apiUrl =
       "https://api.openweathermap.org/data/2.5/weather?&units=imperial&q=";
     const searchBox = document.querySelector(".search input");
     const searchBtn = document.querySelector(".search button");
     const weatherIcon = document.querySelector(".weather-icon");
+    //function to fetch and display weather for a city
     async function checkWeather(city) {
-      const response = await fetch(
-        apiUrl + city + "&appid=44b59831501c8391597259a348d1955f"
-      );
+      const response = await fetch(apiUrl + city + "&appid=" + apiKey);
       if (response.status == 404) {
+        //if city is invalid, display error message
         document.querySelector(".error").style.display = "block";
         document.querySelector(".weather").style.display = "none";
       } else {
-        var data = await response.json();
+        //if city is valid, extract JSON obj from the fetch response
+        var data = await response.json(); 
+        //update city name, temp, humidty and wind speed
         document.querySelector(".city").innerHTML = data.name;
         document.querySelector(".temp").innerHTML =
           Math.round(data.main.temp) + "°f";
         document.querySelector(".humidity").innerHTML =
           data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + " mph";
+        //set correct weather icon based on the weather conditions
         if (data.weather[0].main == "Clouds") {
           weatherIcon.src = "images/clouds.png";
         } else if (data.weather[0].main == "Clear") {
@@ -76,8 +83,32 @@
         document.querySelector(".weather").style.display = "block";
       }
     }
+    //event listener for search button click
     searchBtn.addEventListener("click", () => {
-      checkWeather(searchBox.value);
+      const city = searchBox.value;
+      checkWeather(city);
+      //store the searched city in localStorage
+      let searchedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
+      //add the city to the array if it's not already present
+      if (!searchedCities.includes(city)) {
+        searchedCities.push(city);
+        //stringify converts searchedCities array into a JSON string
+        localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+      }
     });
+
+    function getCityFromUrl() {
+      //creates a new URLSearchParams object with the query string of the current URL 
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get("city");
+    }
+    //check if there's a city in the URL on page load and display its weather
+    window.onload = () => {
+      const city = getCityFromUrl();
+      if (city) {
+        searchBox.value = city;
+        checkWeather(city);
+      }
+    };
   </script>
 </html>
