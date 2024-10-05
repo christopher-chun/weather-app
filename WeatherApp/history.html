@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather History</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="history.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h1>Search History</h1>
+      <ul id="history-list"></ul>
+      <button onclick="clearHistory()">Clear History</button>
+      <a href="index.html">
+        <button id="mainButton">Open Main Page</button>
+      </a>
+    </div>
+    <script>
+      const historyList = document.getElementById("history-list");
+      function displayHistory() {
+        //clear previous content
+        historyList.innerHTML = ""; 
+        //get search history from local storage or empty array if no cities have been searched
+        const cities = JSON.parse(localStorage.getItem("searchedCities")) || [];
+        //loop through each city and create an element in the list
+        cities.forEach((city) => {
+          const li = document.createElement("li");
+          //encodeURIComponent returns a new string representing the city encoded as a URI component
+          li.innerHTML = '<a href="index.html?city=' + encodeURIComponent(city) + '" style="color: white;">' + city + '</a>';
+          historyList.appendChild(li);
+        });
+      }
+      function clearHistory() {
+        //clearing the search history from local storage
+        localStorage.removeItem("searchedCities");
+        //refreshing the history display
+        displayHistory();
+      }
+      //display history on page load
+      window.onload = displayHistory;
+    </script>
+  </body>
+</html>
