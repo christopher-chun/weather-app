@@ -1,7 +1,7 @@
 # Weather App
 This weather app allows users to enter in any location such as a city, town, province or country and it will show the weather in that location.
 ## Description
-Uses openweathermap API to receive data of the weather from the locations that the user inputs. This includes the temperature in fahrenheit, the percent humidity, and the wind speed in mph. It also includes a history function where every city that has been searched will appear in the history as a list. Users can click the 'open history' button to navigate to the history page. On the history page, users can either clear the search history or click on a location that will bring them back to the main page with that location's weather data displayed. User's can also directly go back to the main page without making any changes to the search history.
+Uses openweathermap API to receive data of the weather from the locations that the user inputs. This includes the temperature in fahrenheit, the percent humidity, and the wind speed in mph. It also includes a history function where every city that has been searched will appear in the history as a list. Users can click the 'open history' button to navigate to the history page. On the history page, users can either clear the search history or click on a location that will bring them back to the main page with that location's weather data displayed. Users can also directly go back to the main page without making any changes to the search history.
 ## API
 [openweathermap](https://openweathermap.org/api)
 ## What I learned
