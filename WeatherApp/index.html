@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css" />
+    <script type='text/javascript' src='config.js'></script>
   </head>
   <body>
     <div class="card">
@@ -44,7 +45,7 @@
   </body>
   <script>
     //openweathermap API key and url
-    const apiKey = "44b59831501c8391597259a348d1955f";
+    const apiKey = config.KEY;
     const apiUrl =
       "https://api.openweathermap.org/data/2.5/weather?&units=imperial&q=";
     const searchBox = document.querySelector(".search input");
